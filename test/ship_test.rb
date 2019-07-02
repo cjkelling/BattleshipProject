@@ -24,10 +24,14 @@ class ShipTest < Minitest::Test
   def test_ship_sunk
     refute @ship.sunk?
     @ship.hit
+    assert_equal 2, @ship.health
     @ship.hit
+    assert_equal 1, @ship.health
     @ship.hit
+    assert_equal 0, @ship.health
     assert @ship.sunk?
+    @ship.hit
+    assert_equal 0, @ship.health
   end
-
 
 end
