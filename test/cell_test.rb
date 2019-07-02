@@ -1,4 +1,3 @@
-
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ship'
@@ -19,6 +18,7 @@ class CellTest < Minitest::Test
     assert_equal "B4", @cell.coordinate
     assert_nil @cell.ship
     assert @cell.empty?
+    refute @cell.fired_upon?
   end
 
   def test_place_ship
@@ -29,9 +29,8 @@ class CellTest < Minitest::Test
 
   def test_fired_upon
     @cell.place_ship(@ship)
-    refute @cell.fired_upon?
     @cell.fire_upon
-    assert equal 2, @ship.health
+    assert_equal 2, @ship.health
     assert @cell.fired_upon?
   end
 
