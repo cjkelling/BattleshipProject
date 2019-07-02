@@ -15,7 +15,6 @@ class Cell
     @ship = ship
   end
 
-
   def fired_upon?
     @fired_upon
   end
@@ -25,5 +24,19 @@ class Cell
       @ship.hit
     end
     @fired_upon = true
+  end
+
+  def render(occupied = false)
+    if !empty? && occupied == true
+      @render = "S"
+    elsif !fired_upon? && empty?
+      @render = "."
+    elsif fired_upon? && empty?
+      @render = "M"
+    elsif fired_upon? && !empty? && @ship.health == 0
+      @render = "X"
+    elsif fired_upon? && !empty?
+      @render = "H"
+    end
   end
 end
