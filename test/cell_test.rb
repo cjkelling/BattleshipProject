@@ -26,4 +26,8 @@ class CellTest < Minitest::Test
     assert_instance_of Ship, @cell.ship
   end
 
+  def test_fired_upon?
+    assert_equal false, @cell.fired_upon?
+  end
+
 end

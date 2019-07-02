@@ -15,4 +15,10 @@ class Cell
     @cell = @ship
   end
 
+  def fired_upon?
+    false
+  end
+
+#if fired_upon? = true && @cell = @ship 
+
 end
