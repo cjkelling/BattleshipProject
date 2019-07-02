@@ -15,8 +15,4 @@ class Ship
     @health -= 1
   end
 
-  # def position(coordinate)
-  #
-  # end
-
 end

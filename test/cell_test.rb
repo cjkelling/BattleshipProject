@@ -1,3 +1,4 @@
+
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ship'
@@ -7,18 +8,31 @@ require 'pry'
 class CellTest < Minitest::Test
 
   def setup
+    @name = "Cruiser"
+    @length = 3
+    @ship = Ship.new(@name, @length)
     @coordinate = "B4"
     @cell = Cell.new(@coordinate)
   end
 
-  def test_cell_exists
-    assert_instance_of Cell, @cell
+  def test_empty_cell_attributes
+    assert_equal "B4", @cell.coordinate
+    assert_nil @cell.ship
+    assert @cell.empty?
   end
 
-  def test_cell_attributes
-    assert_equal @coordinate, @cell.coordinate
-    assert_equal nil, @cell.ship
-    assert @cell.empty?
+  def test_place_ship
+    @cell.place_ship(@ship)
+    refute @cell.empty?
+    assert_instance_of Ship, @cell.ship
+  end
+
+  def test_fired_upon
+    @cell.place_ship(@ship)
+    refute @cell.fired_upon?
+    @cell.fire_upon
+    assert equal 2, @ship.health
+    assert @cell.fired_upon?
   end
 
 end
