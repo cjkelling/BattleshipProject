@@ -3,15 +3,16 @@ class Cell
 
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = ship
+    @ship = nil
   end
 
   def empty?
-    @ship != 0
+    @cell == nil
   end
 
   def place_ship(ship)
-
+    @ship = ship
+    @cell = @ship
   end
 
 end
