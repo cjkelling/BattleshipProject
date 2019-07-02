@@ -29,5 +29,4 @@ class ShipTest < Minitest::Test
     assert @ship.sunk?
   end
 
-
 end
