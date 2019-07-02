@@ -17,8 +17,8 @@ class CellTest < Minitest::Test
 
   def test_cell_attributes
     assert_equal @coordinate, @cell.coordinate
-    assert_equal @ship, @cell.block
-    assert_equal @cell.block, nil
+    assert_equal nil, @cell.ship
+    assert @cell.empty?
   end
 
 end
