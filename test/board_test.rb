@@ -9,11 +9,15 @@ class BoardTest < Minitest::Test
 
   def setup
     @board = Board.new
+    @cruiser = Ship.new('Cruiser', 3)
+    @submarine = Ship.new('Submarine', 2)
   end
 
   def test_it_exists
     assert_instance_of Board, @board
     assert_instance_of Hash, @board.cells
+    assert_instance_of Ship, @cruiser
+    assert_instance_of Ship, @submarine
   end
 
   def test_board_cells
@@ -26,6 +30,10 @@ class BoardTest < Minitest::Test
     refute_equal true, @board.valid_coordinate?('A5')
     refute_equal true, @board.valid_coordinate?('E1')
     refute_equal true, @board.valid_coordinate?('A22')
+  end
+
+  def test_valid_placement
+    refute_equal true, @board.valid_placement?(@cruiser, ['A1', 'A2'])
   end
 
 end

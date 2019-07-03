@@ -25,7 +25,13 @@ class Board
 
   def valid_coordinate?(coord)
     if @cells.keys.include?(coord) == true
-      true 
+      true
     end
+  end
+
+  def valid_placement?
+    if @cells.length == @ship.length
+      true
+    end 
   end
 end
