@@ -18,5 +18,11 @@ class BoardTest < Minitest::Test
 
   def test_board_cells
     assert @board.cells
-    end
+  end
+
+  def test_valid_coordinates
+    assert_equal true, @board.valid_coordinate?('A1')
+    refute_equal true, @board.valid_coordinate?('A5')
+  end
+
 end
