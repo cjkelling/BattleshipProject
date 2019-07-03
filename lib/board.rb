@@ -22,4 +22,11 @@ class Board
       'D4' => Cell.new('D4'),
       }
   end
+
+  def valid_coordinate?(input)
+    if @cells.keys.include?(input) == true
+      true
+    end
+  end
+
 end
