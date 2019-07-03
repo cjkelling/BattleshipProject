@@ -6,7 +6,7 @@ require 'pry'
 class ShipTest < Minitest::Test
 
   def setup
-    @name = "Cruiser"
+    @name = 'Cruiser'
     @length = 3
     @ship = Ship.new(@name, @length)
   end
@@ -16,7 +16,7 @@ class ShipTest < Minitest::Test
   end
 
   def test_ship_attributes
-    assert_equal "Cruiser", @ship.name
+    assert_equal 'Cruiser', @ship.name
     assert_equal 3, @ship.length
     assert_equal 3, @ship.health
   end
