@@ -31,15 +31,12 @@ class Board
   def valid_placement?(ship, coordinates)
     array = []
     ship.length == coordinates.count
-    coordinates.each do |coordinate|
+    coordinates.each_slice(1) do |coordinate|
       array << coordinate.chars
+    end
+    if array[0] == array[0]
+      array[1].to_i == array[1].to_i +=1 | -+1
     end
   end
 
 end
-
-"Each given coordinate string needs to be broken down into its
-individual letter and number. Then the rule needs to say
-that the ship coordinates can only move 1 letter or 1 number away from the
-original, but it can't change both. This will prevent diagonal
-movement."
