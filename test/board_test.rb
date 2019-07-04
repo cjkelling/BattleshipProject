@@ -25,15 +25,22 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_coordinates
-    assert_equal true, @board.valid_coordinate?('A1')
-    assert_equal true, @board.valid_coordinate?('D4')
-    refute_equal true, @board.valid_coordinate?('A5')
-    refute_equal true, @board.valid_coordinate?('E1')
-    refute_equal true, @board.valid_coordinate?('A22')
+    assert @board.valid_coordinate?('A1')
+    assert @board.valid_coordinate?('D4')
+    refute @board.valid_coordinate?('A5')
+    refute @board.valid_coordinate?('E1')
+    refute @board.valid_coordinate?('A22')
   end
 
   def test_valid_placement
-    refute_equal true, @board.valid_placement?(@cruiser, ['A1', 'A2'])
+    refute @board.valid_placement?(@cruiser, ['A1', 'A2'])
+    refute @board.valid_placement?(@submarine, ['A2', 'A3', 'A4'])
+    assert @board.valid_placement?(@submarine, ['C2', 'C3'])
   end
+
+  # def test_coordinates_consecutive
+  #   refute @board.valid_placement?(@cruiser, ['A1', 'A2', 'A3'])
+  #   refute @board.valid_placement?(@submarine, ['A1', 'C1'])
+  # end
 
 end

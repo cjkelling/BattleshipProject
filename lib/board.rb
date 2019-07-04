@@ -29,9 +29,17 @@ class Board
     end
   end
 
-  def valid_placement?
-    if @cells.length == @ship.length
+  def valid_placement?(ship, coordinates)
+    if coordinates.length == ship.length
       true
-    end 
+    end
   end
+
+  # def valid_placement?(ship, coordinates)
+  #   array = []
+  #   ship.length == coordinates.count
+  #   coordinates.each do |coordinate|
+  #     array << coordinate.chars
+  #   end
+  # end
 end
