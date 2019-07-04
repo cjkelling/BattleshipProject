@@ -11,24 +11,31 @@ class Board
   end
 
   def valid_coordinate?(input)
+
     if @cells.keys.include?(input) == true
       true
     end
+
   end
 
   def valid_placement?(ship, coordinates)
+
     unless ship.length == coordinates.count
       return false
     end
+
     row_array = []
     column_array = []
+
     coordinates.each do |cooradate|
       array = cooradate.chars
       row_array << array[0].ord
       column_array << array[1].to_i
     end
+
     row_array.sort!
     column_array.sort!
+
     if row_array.uniq.length == 1
       return validate_array?(column_array)
     end
@@ -36,6 +43,7 @@ class Board
     if column_array.uniq.length == 1
       return validate_array?(row_array)
     end
+
   end
 
   def validate_array?(array)
@@ -43,4 +51,5 @@ class Board
       range = (start..start + array.length - 1)
       array == range.to_a
   end
+
 end
