@@ -2,7 +2,6 @@ class Board
   attr_reader :cells
 
   def initialize
-    @board = Hash.new
     @cells = {
       'A1' => Cell.new('A1'), 'A2' => Cell.new('A2'), 'A3' => Cell.new('A3'), 'A4' => Cell.new('A4'),
       'B1' => Cell.new('B1'), 'B2' => Cell.new('B2'), 'B3' => Cell.new('B3'), 'B4' => Cell.new('B4'),
@@ -13,7 +12,7 @@ class Board
 
   def valid_coordinate?(input)
 
-    if @cells.keys.include?(input) == true
+    if @cells.keys.include?(input)
       true
     end
 
@@ -21,7 +20,7 @@ class Board
 
   def valid_placement?(ship, coordinates)
 
-    unless ship.length == coordinates.count
+    unless (ship.length == coordinates.count)
       return false
     end
 
@@ -53,44 +52,10 @@ class Board
       array == range.to_a
   end
 
-  def valid_placement?(ship, coordinates)
-
-    unless ship.length == coordinates.count
-      return false
-    end
-
-    row_array = []
-    column_array = []
-
-    coordinates.each do |cooradate|
-      array = cooradate.chars
-      row_array << array[0].ord
-      column_array << array[1].to_i
-    end
-
-    row_array.sort!
-    column_array.sort!
-
-    if row_array.uniq.length == 1
-      return validate_array?(column_array)
-    end
-
-    if column_array.uniq.length == 1
-      return validate_array?(row_array)
-    end
-
-  end
-
-  def validate_array?(array)
-      start = array.first
-      range = (start..start + array.length - 1)
-      array == range.to_a
-  end
-
-  def place(ship, coordinates)
-    if cell.valid_coordinate? && cell.valid_placement? && cell.empty?
-      cell.render
-    end
+  def place(ship, array_of_coordinates)
+      array_of_coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
   end
 
 end
