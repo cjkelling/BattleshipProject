@@ -69,11 +69,10 @@ class BoardTest < Minitest::Test
 
   def test_renders
     @board.place(@cruiser, ["A1", "A2", "A3"])
-    @board.renders
+    @board.render
 
-    assert @board.renders
-    assert @board.renders(true)
-
+    assert @board.render
+    assert @board.render(true)
   end
 
 end

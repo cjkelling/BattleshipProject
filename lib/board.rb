@@ -6,7 +6,8 @@ class Board
       "A1" => Cell.new("A1"), "A2" => Cell.new("A2"), "A3" => Cell.new("A3"), "A4" => Cell.new("A4"), +
       "B1" => Cell.new("B1"), "B2" => Cell.new("B2"), "B3" => Cell.new("B3"), "B4" => Cell.new("B4"), +
       "C1" => Cell.new("C1"), "C2" => Cell.new("C2"), "C3" => Cell.new("C3"), "C4" => Cell.new("C4"), +
-      "D1" => Cell.new("D1"), "D2" => Cell.new("D2"), "D3" => Cell.new("D3"), "D4" => Cell.new("D4")"
+      "D1" => Cell.new("D1"), "D2" => Cell.new("D2"), "D3" => Cell.new("D3"), "D4" => Cell.new("D4")
+    }
   end
 
   def valid_coordinate?(input)
@@ -40,8 +41,6 @@ class Board
     row_array.sort!
     column_array.sort!
 
-    p row_array.zip(column_array)
-
     if row_array.uniq.length == 1
       return validate_array?(column_array)
     end
@@ -63,22 +62,13 @@ class Board
     end
   end
 
-  def renders(playing = false)
-    # require 'pry'; binding.pry
-    if playing = true
+  def render(playing = false)
+    if playing == true
       "  1 2 3 4 \n" +
-      "A #{@cell.render("A1")} #{@cell.render("A2")} #{@cell.render("A3")} #{@cell.render("A4")} \n" +
-      "B #{@cell.render("B1")} #{@cell.render("B2")} #{@cell.render("B3")} #{@cell.render("B4")} \n" +
-      "C #{@cell.render("C1")} #{@cell.render("C2")} #{@cell.render("C3")} #{@cell.render("C4")} \n" +
-      "D #{@cell.render("D1")} #{@cell.render("D2")} #{@cell.render("D3")} #{@cell.render("D4")} \n"
+      "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
+      "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n" +
+      "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n" +
+      "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
     end
-  end
-
-  def render
-    "  1 2 3 4 \n" +
-    "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n"
-    # "B #{@cells.render("B1")} #{@cells.render("B2")} #{@cells.render("B3")} #{@cells.render("B4")} \n"
-    # "C #{@cells.render("C1")} #{@cells.render("C2")} #{@cells.render("C3")} #{@cells.render("C4")} \n"
-    # "D #{@cells.render("D1")} #{@cells.render("D2")} #{@cells.render("D3")} #{@cells.render("D4")} \n"
   end
 end
