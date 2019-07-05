@@ -1,11 +1,16 @@
 class Turn
+  attr_reader :board
+
+def intiialize
+  @board = board
+end
 
 def render_name
-  if @render == "M"
+  if @board.cells.render == "M"
     puts "was a miss"
-  elsif @render == "H"
+  elsif @board.cells.render == "H"
     puts "was a hit"
-  elsif @render == "X"
+  elsif @board.cells.render == "X"
     puts "sunk their #{ship.name}"
   end
 end

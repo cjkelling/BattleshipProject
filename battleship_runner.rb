@@ -85,8 +85,18 @@ def take_turns
     @player_board.cells[computer_guess[0]].fire_upon
     @player_board.cells[computer_guess[0]].render
 
-      puts "Your shot on #{player_guess} #{turn.render_name}."
-      puts "My shot on #{computer_guess[0]} #{turn.render_name}."
+    # def render_name
+    #   if @player_board.cells[computer_guess[0]].render == "M"
+    #     puts "was a miss"
+    #   elsif @player_board.cells[computer_guess[0]].render == "H"
+    #     puts "was a hit"
+    #   elsif @player_board.cells[computer_guess[0]].render == "X"
+    #     puts "sunk their #{ship.name}"
+    #   end
+    # end
+
+      puts "Your shot on #{player_guess} #{render_name}."
+      puts "My shot on #{computer_guess[0]} #{render_name}."
       puts ""
       puts ""
     end
