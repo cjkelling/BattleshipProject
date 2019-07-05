@@ -35,7 +35,7 @@ class CellTest < Minitest::Test
 
   def test_fired_upon
     @cell.place_ship(@ship)
-    @cell.fire_upon(@cell)
+    @cell.fire_upon
     assert_equal 1, @ship.health
     assert @cell.fired_upon?
   end
@@ -43,7 +43,7 @@ class CellTest < Minitest::Test
   def test_cell_render
 
     assert_equal '.', @cell.render
-    @cell.fire_upon(@cell)
+    @cell.fire_upon
     assert_equal 'M', @cell.render
     assert_equal '.', @cell_2.render
   end
@@ -55,7 +55,7 @@ class CellTest < Minitest::Test
     @cell_2.fire_upon(@cell_2)
     assert_equal 'H', @cell_2.render
     assert_equal false, @ship.sunk?
-    @cell.fire_upon(@cell)
+    @cell.fire_upon
     assert_equal 'X', @cell.render
     assert_equal true, @ship.sunk?
   end
