@@ -71,7 +71,20 @@ def setup
 end
 
 def take_turns
-  puts "I'm taking turns"
+  puts "=============COMPUTER BOARD============="
+  @computer_board.board_render
+  puts ""
+  puts "=============PLAYER BOARD============="
+  @player_board.board_render
+  puts ""
+  #player chooses cell to fire on
+  puts "Enter the coordinate for your shot:"
+  player_guess = gets.chomp.upcase
+  until @computer_board.valid_coordinate?([player_guess]) && @computer_board.cells[player_guess].fired_upon? == false
+    puts "Please choose a valid coordinate:"
+    player_guess = gets.chomp.upcase
+  end
+
 end
 
 def print_results

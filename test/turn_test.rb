@@ -16,13 +16,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_display_boards
-    p "=============COMPUTER BOARD============="
-    @computer_board.board_render
 
-
-      @player_board.place(@submarine,["A1", "A2"])
-    p "=============PLAYER BOARD============="
-    @player_board.board_render
   end
 
 end
