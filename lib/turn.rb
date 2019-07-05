@@ -9,6 +9,7 @@ class Turn
 
   def take_turns
     loop do
+      puts ""
       puts "=============COMPUTER BOARD============="
       @computer_board.board_render
       puts ""
@@ -38,9 +39,8 @@ class Turn
       end
 
       computer_options = @player_board.cells.keys
-
       computer_guess = computer_options.sample(1)
-        computer_options.delete(computer_guess[0])
+      computer_options.delete(computer_guess[0])
 
       @player_board.cells[computer_guess[0]].fire_upon
       @player_board.cells[computer_guess[0]].render
@@ -68,4 +68,4 @@ class Turn
       puts ""
     end
   end
-end 
+end
