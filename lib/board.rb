@@ -63,7 +63,6 @@ class Board
   end
 
   def renders(playing = false)
-    # require 'pry'; binding.pry
     if playing = true
       "  1 2 3 4 \n" +
       "A #{@cell.render("A1")} #{@cell.render("A2")} #{@cell.render("A3")} #{@cell.render("A4")} \n" +
