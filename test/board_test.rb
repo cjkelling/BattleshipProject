@@ -82,9 +82,16 @@ class BoardTest < Minitest::Test
   #   @board.render(true)
   # end
 
+<<<<<<< HEAD
   def test_place_computer_ship
     @computer_board.computer_place(@cruiser)
     @computer_board.computer_place(@submarine)
+=======
+  def test_place_ship
+    @computer_board.computer_place(@cruiser)
+    @computer_board.computer_place(@submarine)
+
+>>>>>>> baee3e21010874a3429b430c1f218fe9e7beba6c
     @computer_board.render(true)
   end
 
