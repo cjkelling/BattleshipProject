@@ -80,8 +80,12 @@ def take_turns
   #player chooses cell to fire on
   puts "Enter the coordinate for your shot:"
   player_guess = gets.chomp.upcase
-  until @computer_board.valid_coordinate?([player_guess]) && @computer_board.cells[player_guess].fired_upon? == false
+  until @computer_board.valid_coordinate?([player_guess])
     puts "Please choose a valid coordinate:"
+    player_guess = gets.chomp.upcase
+  end
+  until @computer_board.cells[player_guess].fired_upon? == false
+    puts "You have already fired on this cell. Please choose another cell:"
     player_guess = gets.chomp.upcase
   end
 
