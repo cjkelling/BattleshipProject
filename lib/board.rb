@@ -41,6 +41,8 @@ class Board
     row_array.sort!
     column_array.sort!
 
+    p row_array.zip(column_array)
+
     if row_array.uniq.length == 1
       return validate_array?(column_array)
     end
@@ -62,4 +64,11 @@ class Board
       end
   end
 
+  def render
+    "  1 2 3 4 \n" +
+    "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n"
+    # "B #{@cells.render("B1")} #{@cells.render("B2")} #{@cells.render("B3")} #{@cells.render("B4")} \n"
+    # "C #{@cells.render("C1")} #{@cells.render("C2")} #{@cells.render("C3")} #{@cells.render("C4")} \n"
+    # "D #{@cells.render("D1")} #{@cells.render("D2")} #{@cells.render("D3")} #{@cells.render("D4")} \n"
+  end
 end
