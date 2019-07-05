@@ -22,7 +22,8 @@ class Board
     end
 
     array_of_empties = coordinates.map do |coord|
-      @cells[coord].empty?
+      # require 'pry'; binding.pry
+      @cells[coord].cell_empty?
     end
 
     if array_of_empties.include?(false)

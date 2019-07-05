@@ -33,9 +33,9 @@ def setup
 
   @cruiser = Ship.new("Cruiser", 3)
   @submarine = Ship.new("Submarine", 2)
-
-  @computer_board.computer_place(@cruiser)
-  @computer_board.computer_place(@submarine)
+  # 
+  # @computer_board.computer_place(@cruiser)
+  # @computer_board.computer_place(@submarine)
 
   puts ""
   puts "I have laid out my ships on the grid."
@@ -49,7 +49,7 @@ def setup
   puts "Enter the squares for the Cruiser (3 spaces):"
   player_input = gets.chomp.upcase.split(" ")
 
-  until @player_board.valid_placement?(@cruiser, player_input) && @player_board.valid_coordinate?(player_input)
+  until @player_board.valid_placement?(@cruiser, player_input) #&& @player_board.valid_coordinate?(player_input)
       puts "Those are invalid coordinates. Please try again:"
       player_input = gets.chomp.upcase.split(" ")
   end
