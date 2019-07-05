@@ -19,7 +19,7 @@ class Cell
     @fired_upon
   end
 
-  def fire_upon
+  def fire_upon(input)
     if !fired_upon? && !cell_empty?
       @ship.hit
     end
@@ -36,8 +36,6 @@ class Cell
       @render = "."
     elsif fired_upon? && cell_empty?
       @render = "M"
-    elsif !fired_upon? && !cell_empty?
-      @render = "."
     elsif fired_upon? && !cell_empty? && @ship.health == 0
       @render = "X"
     elsif fired_upon? && !cell_empty?
