@@ -19,7 +19,7 @@ class Cell
     @fired_upon
   end
 
-  def fire_upon(input)
+  def fire_upon
     if !fired_upon? && !cell_empty?
       @ship.hit
     end

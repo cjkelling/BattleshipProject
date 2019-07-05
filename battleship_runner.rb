@@ -73,15 +73,22 @@ def take_turns
       player_guess = gets.chomp.upcase
     end
 
-    @computer_board.fire_upon(player_guess)
+    @computer_board.cells[player_guess].fire_upon
+    @computer_board.cells[player_guess].render
+
 
     @computer_options = @player_board.cells.keys
 
     computer_guess = @computer_options.sample(1)
       @computer_options.delete(computer_guess[0])
 
+    @player_board.cells[computer_guess[0]].fire_upon
+    @player_board.cells[computer_guess[0]].render
+
       puts "Your shot on #{player_guess} #{turn.render_name}."
       puts "My shot on #{computer_guess[0]} #{turn.render_name}."
+      puts ""
+      puts ""
     end
 end
 
