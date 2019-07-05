@@ -11,11 +11,6 @@ class Board
       }
   end
 
-<<<<<<< HEAD
-  def valid_coordinate?(coord)
-    if @cells.keys.include?(coord) == true
-      true
-=======
   def valid_coordinate?(input)
 
     if @cells.keys.include?(input) == true
@@ -37,7 +32,6 @@ class Board
       array = cooradate.chars
       row_array << array[0].ord
       column_array << array[1].to_i
->>>>>>> 8f5362021e70e494aefe38653a334d0682cd4598
     end
 
     row_array.sort!
@@ -91,6 +85,12 @@ class Board
       start = array.first
       range = (start..start + array.length - 1)
       array == range.to_a
+  end
+
+  def place(ship, coordinates)
+    if cell.valid_coordinate? && cell.valid_placement? && cell.empty?
+      cell.render
+    end
   end
 
 end
