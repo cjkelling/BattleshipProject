@@ -11,12 +11,20 @@ def main_menu
     if input == "Q"
       exit
     elsif input == "P"
-      setup
+      play_game
+      puts 'Enter P to play. Enter Q to quit.'
+      input = gets.chomp.upcase
     else
       puts "That is not a valid input. Please enter P to play. Enter Q to quit."
       input = gets.chomp.upcase
     end
   end
+end
+
+def play_game
+  setup
+  take_turns
+  print_results
 end
 
 def setup
@@ -39,20 +47,24 @@ def setup
 
   puts ""
   puts "Enter the squares for the Cruiser (3 spaces):"
-  player_input = gets.chomp.upcase.split(" ",)
+  player_input = gets.chomp.upcase.split(" ")
 
-  puts player_input
-
-  loop do
-    if @player_board.valid_placement?(@cruiser, player_input)
-      @player_board.place(@cruiser, player_input)
-    else
+  until @player_board.valid_placement?(@cruiser, player_input) && @player_board.valid_coordinate?(player_input)
       puts "Those are invalid coordinates. Please try again:"
-      player_input = gets.chomp.upcase
-    end
+      player_input = gets.chomp.upcase.split(" ")
   end
 
+  @player_board.place(@cruiser, player_input)
+
   @player_board.render(true)
+end
+
+def take_turns
+  puts "I'm taking turns"
+end
+
+def print_results
+  puts "I'm giving you results"
 end
 
 

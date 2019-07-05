@@ -83,12 +83,8 @@ class Board
   end
 
   def computer_place(ship)
-<<<<<<< HEAD
-=======
-
     coordinates_ship = []
 
->>>>>>> baee3e21010874a3429b430c1f218fe9e7beba6c
     loop do
       coordinates_ship = @cells.keys.sample(ship.length)
       if valid_placement?(ship, coordinates_ship)
