@@ -74,6 +74,9 @@ def take_turns
 
   computer_guess = @computer_options.sample(1)
     @computer_options.delete(computer_guess[0])
+end
+
+def shot_results
 
 end
 

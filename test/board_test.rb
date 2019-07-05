@@ -27,11 +27,11 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_coordinate
-    assert @board.valid_coordinate?('A1')
-    assert @board.valid_coordinate?('D4')
-    refute @board.valid_coordinate?('A5')
-    refute @board.valid_coordinate?('E1')
-    refute @board.valid_coordinate?('A22')
+    assert @board.coordinate_valid?('A1')
+    assert @board.coordinate_valid?('D4')
+    refute @board.coordinate_valid?('A5')
+    refute @board.coordinate_valid?('E1')
+    refute @board.coordinate_valid?('A22')
   end
 
   def test_valid_length
