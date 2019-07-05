@@ -85,6 +85,11 @@ def take_turns
     player_guess = gets.chomp.upcase
   end
 
+  @computer_options = @player_board.cells.keys
+
+  computer_guess = @computer_options.sample(1)
+    @computer_options.delete(computer_guess[0])
+
 end
 
 def print_results
