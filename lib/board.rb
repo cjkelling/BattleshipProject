@@ -2,7 +2,6 @@ class Board
   attr_reader :cells
 
   def initialize
-    @board = Hash.new
     @cells = {
       'A1' => Cell.new('A1'), 'A2' => Cell.new('A2'), 'A3' => Cell.new('A3'), 'A4' => Cell.new('A4'),
       'B1' => Cell.new('B1'), 'B2' => Cell.new('B2'), 'B3' => Cell.new('B3'), 'B4' => Cell.new('B4'),
@@ -12,16 +11,21 @@ class Board
   end
 
   def valid_coordinate?(input)
-
-    if @cells.keys.include?(input) == true
+    if @cells.keys.include?(input)
       true
     end
-
   end
 
   def valid_placement?(ship, coordinates)
-
     unless ship.length == coordinates.count
+      return false
+    end
+
+    array_of_empties = coordinates.map do |coord|
+      @cells[coord].empty?
+    end
+
+    if array_of_empties.include?(false)
       return false
     end
 
@@ -44,7 +48,6 @@ class Board
     if column_array.uniq.length == 1
       return validate_array?(row_array)
     end
-
   end
 
   def validate_array?(array)
@@ -52,4 +55,11 @@ class Board
       range = (start..start + array.length - 1)
       array == range.to_a
   end
+
+  def place(ship, array_of_coordinates)
+      array_of_coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
+  end
+
 end

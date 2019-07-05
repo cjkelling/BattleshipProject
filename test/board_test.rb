@@ -16,6 +16,8 @@ class BoardTest < Minitest::Test
   def test_it_exists
     assert_instance_of Board, @board
     assert_instance_of Hash, @board.cells
+    assert_instance_of Ship, @cruiser
+    assert_instance_of Ship, @submarine
   end
 
   def test_board_cells
@@ -43,6 +45,25 @@ class BoardTest < Minitest::Test
     refute @board.valid_placement?(@submarine, ["C2", "D3"])
     assert @board.valid_placement?(@submarine, ["A1", "A2"])
     assert @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
+  end
+
+  def test_place_ship
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    cell_1 = @board.cells["A1"]
+    cell_2 = @board.cells["A2"]
+    cell_3 = @board.cells["A3"]
+
+    assert cell_1, cell_1.ship
+    assert cell_2, cell_2.ship
+    assert cell_3, cell_3.ship
+    assert cell_1.ship == cell_2.ship && cell_3.ship
+  end
+
+  def test_overlapping_ships
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    refute @board.valid_placement?(@submarine, ["A1", "B1"])
   end
 
 end
