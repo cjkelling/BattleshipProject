@@ -1,5 +1,5 @@
 class Board
-  attr_reader :cells, :empty_board
+  attr_reader :cells
 
   def initialize
     @cells = {
@@ -56,19 +56,19 @@ class Board
     array == range.to_a
   end
 
-  def place(ship, array_of_coordinates)
-    array_of_coordinates.each do |coordinate|
+  def place(ship, coordinates)
+    coordinates.each do |coordinate|
       @cells[coordinate].place_ship(ship)
     end
   end
 
   def renders(playing = false)
-    if playing = true
-      "  1 2 3 4 \n" +
-      "A #{@cell.render("A1")} #{@cell.render("A2")} #{@cell.render("A3")} #{@cell.render("A4")} \n" +
-      "B #{@cell.render("B1")} #{@cell.render("B2")} #{@cell.render("B3")} #{@cell.render("B4")} \n" +
-      "C #{@cell.render("C1")} #{@cell.render("C2")} #{@cell.render("C3")} #{@cell.render("C4")} \n" +
-      "D #{@cell.render("D1")} #{@cell.render("D2")} #{@cell.render("D3")} #{@cell.render("D4")} \n"
+    if playing == true
+      ("  1 2 3 4 \n") +
+      ("A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n") +
+      ("B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n") +
+      ("C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n") +
+      ("D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n")
     end
   end
 

@@ -26,10 +26,8 @@ class Cell
     @fired_upon = true
   end
 
-  def render(occupied = false)
-    if !empty? && occupied == true
-      @render = 'S'
-    elsif !fired_upon? && empty?
+  def render(show_ship = false)
+    if !fired_upon? && empty?
       @render = '.'
     elsif fired_upon? && empty?
       @render = 'M'
@@ -37,6 +35,9 @@ class Cell
       @render = 'X'
     elsif fired_upon? && !empty?
       @render = 'H'
+    elsif show_ship == true && !empty?
+      @render = 'S'
     end
   end
+
 end
