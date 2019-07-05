@@ -10,9 +10,10 @@ class Board
     }
   end
 
-  def valid_coordinate?(input)
-    if @cells.keys.include?(input)
-      true
+  def valid_coordinate?(inputs)
+    # require 'pry'; binding.pry
+    inputs.all? do |input|
+      @cells.keys.include?(input)
     end
   end
 
