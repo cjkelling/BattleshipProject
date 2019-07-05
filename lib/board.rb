@@ -86,15 +86,18 @@ class Board
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
 
-    coordinates_cruiser = @cells.keys.sample(3) until @cells.keys.each_cons(3)
-    coordinates_sub = @cells.keys.sample(2) until @cells.keys.each_cons(2)
+    coordinates_cruiser = @cells.keys.slice(@cells.keys.sample(3))
+    coordinates_sub = @cells.keys.slice(@cells.keys.sample(2))
 
-    if valid_placement?(cruiser, coordinates_cruiser)
-      place(cruiser, coordinates_cruiser)
-    end
 
-    if valid_placement?(submarine, coordinates_sub)
-      place(submarine, coordinates_sub)
-    end
+    # if valid_placement?(cruiser, coordinates_cruiser)
+      # place(cruiser, coordinates_cruiser)
+    # end
+    #
+    # if valid_placement?(submarine, coordinates_sub)
+      # place(submarine, coordinates_sub)
+    # end
+    p coordinates_cruiser
+    p coordinates_sub
   end
 end
