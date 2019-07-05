@@ -34,7 +34,8 @@ def setup
   @cruiser = Ship.new("Cruiser", 3)
   @submarine = Ship.new("Submarine", 2)
 
-  @computer_board.computer_place(@ships)
+  @computer_board.computer_place(@cruiser)
+  @computer_board.computer_place(@submarine)
 
   puts ""
   puts "I have laid out my ships on the grid."
