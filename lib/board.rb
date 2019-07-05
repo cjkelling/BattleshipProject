@@ -11,16 +11,21 @@ class Board
   end
 
   def valid_coordinate?(input)
-
     if @cells.keys.include?(input)
       true
     end
-
   end
 
   def valid_placement?(ship, coordinates)
+    unless ship.length == coordinates.count
+      return false
+    end
 
-    unless (ship.length == coordinates.count)
+    array_of_empties = coordinates.map do |coord|
+      @cells[coord].empty?
+    end
+
+    if array_of_empties.include?(false)
       return false
     end
 
@@ -43,7 +48,6 @@ class Board
     if column_array.uniq.length == 1
       return validate_array?(row_array)
     end
-
   end
 
   def validate_array?(array)
