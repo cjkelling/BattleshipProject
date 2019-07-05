@@ -9,6 +9,8 @@ class BoardTest < Minitest::Test
 
   def setup
     @board = Board.new
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
   end
 
   def test_it_exists
@@ -20,12 +22,25 @@ class BoardTest < Minitest::Test
     assert @board.cells
   end
 
-  def test_valid_coordinates
-    assert_equal true, @board.valid_coordinate?('A1')
-    assert_equal true, @board.valid_coordinate?('D4')
-    refute_equal true, @board.valid_coordinate?('A5')
-    refute_equal true, @board.valid_coordinate?('E1')
-    refute_equal true, @board.valid_coordinate?('A22')
+  def test_valid_coordinate
+    assert @board.valid_coordinate?('A1')
+    assert @board.valid_coordinate?('D4')
+    refute @board.valid_coordinate?('A5')
+    refute @board.valid_coordinate?('E1')
+    refute @board.valid_coordinate?('A22')
+  end
+
+  def test_valid_length
+    refute @board.valid_placement?(@cruiser, ["A1", "A2"])
+    refute @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
+    assert @board.valid_placement?(@submarine, ["C2", "C3"])
+  end
+
+  def test_coordinates_consecutive
+    refute @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
+    refute @board.valid_placement?(@submarine, ["A1", "C1"])
+    refute @board.valid_placement?(@cruiser, ["A1", "B2", "C3"])
+    assert @board.valid_placement?(@submarine, ["A1", "A2"])
   end
 
 end
