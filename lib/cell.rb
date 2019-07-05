@@ -20,7 +20,7 @@ class Cell
   end
 
   def fire_upon
-    if !fired_upon? && !empty?
+    if !fired_upon? && !cell_empty?
       @ship.hit
     end
     @fired_upon = true

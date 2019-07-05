@@ -11,7 +11,6 @@ class Board
   end
 
   def valid_coordinate?(inputs)
-    # require 'pry'; binding.pry
     inputs.all? do |input|
       @cells.keys.include?(input)
     end
@@ -23,7 +22,6 @@ class Board
     end
 
     array_of_empties = coordinates.map do |coord|
-      # require 'pry'; binding.pry
       @cells[coord].cell_empty?
     end
 
@@ -64,16 +62,7 @@ class Board
     end
   end
 
-  def render(playing = false)
-    puts(
-    "  1 2 3 4 \n" +
-    "A . . . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . \n"
-    )
-
-    if playing == true
+  def board_render
       puts (
       "  1 2 3 4 \n" +
       "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
@@ -81,7 +70,6 @@ class Board
       "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
       "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
       )
-    end
   end
 
   def computer_place(ship)

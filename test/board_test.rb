@@ -71,28 +71,22 @@ class BoardTest < Minitest::Test
 
   # def test_render
   #   @board.place(@cruiser, ["A1", "A2", "A3"])
-  #   @board.render
-  #   @board.render(true)
+  #   @board.board_render
+  #   @board.board_render
   #   @board.cells["A1"].fire_upon
-  #   @board.render(true)
+  #   @board.board_render
   #   @board.cells["A2"].fire_upon
   #   @board.cells["A3"].fire_upon
-  #   @board.render(true)
+  #   @board.board_render
   #   @board.cells["D3"].fire_upon
-  #   @board.render(true)
+  #   @board.board_render
   # end
 
-<<<<<<< HEAD
   def test_place_computer_ship
     @computer_board.computer_place(@cruiser)
     @computer_board.computer_place(@submarine)
-=======
-  def test_place_ship
-    @computer_board.computer_place(@cruiser)
-    @computer_board.computer_place(@submarine)
 
->>>>>>> baee3e21010874a3429b430c1f218fe9e7beba6c
-    @computer_board.render(true)
+    @computer_board.board_render
   end
 
 end

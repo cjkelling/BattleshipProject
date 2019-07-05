@@ -43,7 +43,7 @@ def setup
   puts "The Cruiser is three units long and the Submarine is two units long."
   puts ""
 
-  @player_board.render
+  @player_board.board_render
 
   puts ""
   puts "Enter the squares for the Cruiser (3 spaces):"
@@ -67,7 +67,7 @@ def setup
 
   @player_board.place(@submarine, player_input)
 
-  @player_board.render(true)
+  @player_board.board_render
 end
 
 def take_turns
@@ -80,20 +80,6 @@ end
 
 
 main_menu
-#   puts @player_board.render(true)
-#
-#   player_input = gets.chomp
-#
-#   loop do
-#     if valid_placement?(@submarine, player_input)
-#       place(@submarine, player_input)
-#       break
-#     else
-#       puts "Those are invalid coordinates. Please try again:"
-#       player_input = gets.chomp
-#     end
-#   end
-# end
 #
 #
 # def turn
