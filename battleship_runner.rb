@@ -74,7 +74,7 @@ def take_turns
     end
 
     @computer_board.cells[player_guess].fire_upon
-    @computer_board.cells[player_guess].render
+    @computer_board.cells[player_guess].render(true)
 
 
     @computer_options = @player_board.cells.keys
@@ -85,18 +85,24 @@ def take_turns
     @player_board.cells[computer_guess[0]].fire_upon
     @player_board.cells[computer_guess[0]].render
 
-    # def render_name
-    #   if @player_board.cells[computer_guess[0]].render == "M"
-    #     puts "was a miss"
-    #   elsif @player_board.cells[computer_guess[0]].render == "H"
-    #     puts "was a hit"
-    #   elsif @player_board.cells[computer_guess[0]].render == "X"
-    #     puts "sunk their #{ship.name}"
-    #   end
-    # end
+    if @player_board.cells[computer_guess[0]].render == "M"
+      puts "My shot on #{computer_guess[0]} was a miss."
+    elsif @player_board.cells[computer_guess[0]].render == "H"
+      puts "My shot on #{computer_guess[0]} was a hit."
+    elsif @player_board.cells[computer_guess[0]].render == "X"
+      puts "My shot on #{computer_guess[0]} was a miss."
+    end
 
-      puts "Your shot on #{player_guess} #{render_name}."
-      puts "My shot on #{computer_guess[0]} #{render_name}."
+    if @computer_board.cells[player_guess].render == "M"
+      puts "Your shot on #{player_guess} was a miss."
+    elsif @player_board.cells[player_guess].render == "H"
+      puts "Your shot on #{player_guess} was a hit."
+    elsif @player_board.cells[player_guess].render == "X"
+      puts "Your shot on #{player_guess} was a miss."
+    end
+
+      # puts "Your shot on #{player_guess} #{render_name}."
+      # puts "My shot on #{computer_guess[0]} #{render_name}."
       puts ""
       puts ""
     end

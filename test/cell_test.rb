@@ -52,11 +52,11 @@ class CellTest < Minitest::Test
     @cell.place_ship(@ship)
     @cell_2.place_ship(@ship)
     assert_equal 'S', @cell_2.render(true)
-    @cell_2.fire_upon(@cell_2)
-    assert_equal 'H', @cell_2.render
+    @cell_2.fire_upon
+    assert_equal 'H', @cell_2.render(true)
     assert_equal false, @ship.sunk?
     @cell.fire_upon
-    assert_equal 'X', @cell.render
+    assert_equal 'X', @cell.render(true)
     assert_equal true, @ship.sunk?
   end
 
