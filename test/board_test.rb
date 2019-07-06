@@ -71,6 +71,7 @@ class BoardTest < Minitest::Test
     @board.place(@cruiser, ["A1", "A2", "A3"])
     @board.renders(true)
     assert @board.renders(true)
+
   end
 
 end
