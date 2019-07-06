@@ -73,6 +73,7 @@ class BoardTest < Minitest::Test
 
     assert @board.renders
     assert @board.renders(true)
+
   end
 
 end
