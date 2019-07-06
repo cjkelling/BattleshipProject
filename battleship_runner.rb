@@ -20,12 +20,19 @@ def main_menu
 end
 
 def setup
+  @computer_board = Board.new
+  @player_board = Board.new
+
+  @cruiser = Ship.new("Cruiser", 3)
+  @submarine = Ship.new("Submarine", 2)
+
+  @computer_board.computer_place
   computer places ships randomly
 
   puts "I have laid out my ships on the grid."
   puts "You now need to lay out your two ships."
   puts "The Cruiser is three units long and the Submarine is two units long."
-  puts board.render
+  puts @player_board.render
 
     1 2 3 4
   A . . . .
@@ -36,7 +43,7 @@ def setup
   puts "Enter the squares for the Cruiser (3 spaces):"
   > A1 A2 A3
 
-  puts board.render(true)
+  puts @player_board.render(true)
     1 2 3 4
   A S S S .
   B . . . .
