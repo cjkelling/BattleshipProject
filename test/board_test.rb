@@ -64,6 +64,16 @@ class BoardTest < Minitest::Test
     @board.place(@cruiser, ["A1", "A2", "A3"])
 
     refute @board.valid_placement?(@submarine, ["A1", "B1"])
+    assert @board.valid_placement?(@submarine, ["B1", "C1"])
+  end
+
+  def test_renders
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.renders
+
+    assert @board.renders
+    assert @board.renders(true)
+
   end
 
 end
