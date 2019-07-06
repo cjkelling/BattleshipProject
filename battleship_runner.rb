@@ -24,7 +24,7 @@ def setup
 
   puts "I have laid out my ships on the grid."
   puts "You now need to lay out your two ships."
-  puts "The Cruiser is two units long and the Submarine is three units long."
+  puts "The Cruiser is three units long and the Submarine is two units long."
   puts board.render
 
     1 2 3 4
