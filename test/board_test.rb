@@ -67,13 +67,17 @@ class BoardTest < Minitest::Test
     assert @board.valid_placement?(@submarine, ["B1", "C1"])
   end
 
-  def test_renders
+  def test_render
     @board.place(@cruiser, ["A1", "A2", "A3"])
-    @board.renders
-
-    assert @board.renders
-    assert @board.renders(true)
-
+    @board.render
+    @board.render(true)
+    @board.cells["A1"].fire_upon
+    @board.render(true)
+    @board.cells["A2"].fire_upon
+    @board.cells["A3"].fire_upon
+    @board.render(true)
+    @board.cells["D3"].fire_upon
+    @board.render(true)
   end
 
 end

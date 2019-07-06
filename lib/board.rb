@@ -1,12 +1,13 @@
 class Board
-  attr_reader :cells, :empty_board
+  attr_reader :cells
 
   def initialize
     @cells = {
       "A1" => Cell.new("A1"), "A2" => Cell.new("A2"), "A3" => Cell.new("A3"), "A4" => Cell.new("A4"), +
       "B1" => Cell.new("B1"), "B2" => Cell.new("B2"), "B3" => Cell.new("B3"), "B4" => Cell.new("B4"), +
       "C1" => Cell.new("C1"), "C2" => Cell.new("C2"), "C3" => Cell.new("C3"), "C4" => Cell.new("C4"), +
-      "D1" => Cell.new("D1"), "D2" => Cell.new("D2"), "D3" => Cell.new("D3"), "D4" => Cell.new("D4")"
+      "D1" => Cell.new("D1"), "D2" => Cell.new("D2"), "D3" => Cell.new("D3"), "D4" => Cell.new("D4"),
+    }
   end
 
   def valid_coordinate?(input)
@@ -55,20 +56,29 @@ class Board
     array == range.to_a
   end
 
-  def place(ship, array_of_coordinates)
-    array_of_coordinates.each do |coordinate|
+  def place(ship, coordinates)
+    coordinates.each do |coordinate|
       @cells[coordinate].place_ship(ship)
     end
   end
 
-  def renders(playing = false)
-    # require 'pry'; binding.pry
-    if playing = true
+  def render(playing = false)
+    puts(
+    "  1 2 3 4 \n" +
+    "A . . . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . \n"
+    )
+
+    if playing == true
+      puts (
       "  1 2 3 4 \n" +
-      "A #{@cell.render("A1")} #{@cell.render("A2")} #{@cell.render("A3")} #{@cell.render("A4")} \n" +
-      "B #{@cell.render("B1")} #{@cell.render("B2")} #{@cell.render("B3")} #{@cell.render("B4")} \n" +
-      "C #{@cell.render("C1")} #{@cell.render("C2")} #{@cell.render("C3")} #{@cell.render("C4")} \n" +
-      "D #{@cell.render("D1")} #{@cell.render("D2")} #{@cell.render("D3")} #{@cell.render("D4")} \n"
+      "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
+      "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \n" +
+      "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
+      "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
+      )
     end
   end
 
