@@ -1,14 +1,18 @@
 class Computer
+  attr_reader :computer_board
 
-  @computer_board = Board.new
-  @cruiser = Ship.new("Cruiser", 3)
-  @submarine = Ship.new("Submarine", 2)
+  def initialize
+    @computer_board = Board.new
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
+  end
 
   def computer_place
-    coordinate = @computer_board.cells.keys.sample
+    coordinates_cruiser = @computer_board.cells.keys.sample(3)
+    coordinates_sub = @computer_board.cells.keys.sample(2)
 
-    @computer_board.cells[coordinate].place_ship(@cruiser)
-    @computer_board.cells[coordinate].place_ship(@submarine)
+    @computer_board.place(@cruiser, coordinates_cruiser)
+    @computer_board.place(@submarine, coordinates_sub)
   end
 
 end

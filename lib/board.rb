@@ -8,6 +8,7 @@ class Board
       "C1" => Cell.new("C1"), "C2" => Cell.new("C2"), "C3" => Cell.new("C3"), "C4" => Cell.new("C4"), +
       "D1" => Cell.new("D1"), "D2" => Cell.new("D2"), "D3" => Cell.new("D3"), "D4" => Cell.new("D4"),
     }
+    @computer_board = Board.new
   end
 
   def valid_coordinate?(input)
@@ -80,6 +81,14 @@ class Board
       "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
       )
     end
+  end
+
+  def computer_place
+    coordinates_cruiser = @cells.keys.sample(3)
+    coordinates_sub = @cells.keys.sample(2)
+
+    place(@cruiser, coordinates_cruiser)
+    place(@submarine, coordinates_sub)
   end
 
 end

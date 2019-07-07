@@ -57,7 +57,7 @@ def setup
 
 end
 
-def game
+def turn
 
   displays boards
 
@@ -77,9 +77,11 @@ D . . S .
   puts "Enter the coordinate for your shot:"
   > D5
   puts "Please enter a valid coordinate:"
-  > A4
+  > A1
+  puts "You have already fired on this cell. Please choose another cell."
+  >C3
 
-  puts "Your shot on A4 was a miss."
+  puts "Your shot on C3 was a miss."
   puts "My shot on C1 was a miss."
 
 end

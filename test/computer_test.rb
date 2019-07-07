@@ -8,8 +8,14 @@ require 'pry'
 
 class ComputerTest < Minitest::Test
 
+  def setup
+    @computer_board = Board.new
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
+  end
+
   def test_place_ship
-    @computer_board.place_pieces
+    @computer_board.computer_place
     @computer_board.render(true)
   end
 
