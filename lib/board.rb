@@ -82,4 +82,21 @@ class Board
     end
   end
 
+  def computer_place
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    coordinates_cruiser = @cells.keys.rand(3)
+    coordinates_sub = @cells.keys.rand(2)
+
+    if valid_placement?(cruiser, coordinates_cruiser)
+      place(cruiser, coordinates_cruiser)
+    end
+
+    if valid_placement?(submarine, coordinates_sub)
+      place(submarine, coordinates_sub)
+    end
+
+  end
+
 end
