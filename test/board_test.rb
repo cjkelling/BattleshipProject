@@ -11,8 +11,9 @@ class BoardTest < Minitest::Test
     @board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
+    @computer_board = Board.new
   end
-
+  
   def test_it_exists
     assert_instance_of Board, @board
     assert_instance_of Hash, @board.cells
@@ -78,6 +79,11 @@ class BoardTest < Minitest::Test
     @board.render(true)
     @board.cells["D3"].fire_upon
     @board.render(true)
+  end
+
+  def test_place_ship
+    @computer_board.computer_place
+    @computer_board.render(true)
   end
 
 end
