@@ -83,7 +83,6 @@ class Board
   end
 
   def computer_place(ship)
-
     coordinates_ship = []
 
     loop do
@@ -93,7 +92,6 @@ class Board
         break
       end
     end
-
   end
 
 end

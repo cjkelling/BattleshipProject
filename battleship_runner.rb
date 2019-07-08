@@ -7,25 +7,30 @@ def main_menu
   puts 'Enter P to play. Enter Q to quit.'
   input = gets.chomp.upcase
 
-  if input == "Q"
-    exit
-  elsif input == "P"
-    setup
-  else
-    puts "That is not a valid input. Please enter P to play. Enter Q to quit."
-    input = gets.chomp.upcase
+  loop do
+    if input == "Q"
+      exit
+    elsif input == "P"
+      play_game
+      puts 'Enter P to play. Enter Q to quit.'
+      input = gets.chomp.upcase
+    else
+      puts "That is not a valid input. Please enter P to play. Enter Q to quit."
+      input = gets.chomp.upcase
+    end
   end
 end
+
 
 def setup
   @computer_board = Board.new
   @player_board = Board.new
 
-  @cruiser = Ship.new("Cruiser", 3)
-  @submarine = Ship.new("Submarine", 2)
+  @ships = []
+  @ships << @cruiser = Ship.new("Cruiser", 3)
+  @ships << @submarine = Ship.new("Submarine", 2)
 
-  @computer_board.computer_place(@cruiser)
-  @computer_board.computer_place(@submarine)
+  @computer_board.computer_place(@ships)
 
   puts ""
   puts "I have laid out my ships on the grid."
@@ -35,35 +40,36 @@ def setup
 
   @player_board.render
 
-  puts ""
-  puts "Enter the squares for the Cruiser (3 spaces):"
-  player_input = gets.chomp.upcase.split(" ")
-
-  until @player_board.valid_placement?(@cruiser, player_input)
-    puts "Those are invalid coordinates. Please try again:"
+  @ships.each do |ship|
+    puts ""
+    puts "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
     player_input = gets.chomp.upcase.split(" ")
+    until @player_board.valid_placement?(ship, player_input)
+      puts "Those are invalid coordinates. Please try again:"
+      player_input = gets.chomp.upcase.split(" ")
+    end
+    @player_board.place(ship, player_input)
+    @player_board.render(true)
   end
-
-  @player_board.place(@cruiser, player_input)
-
-  @player_board.render(true)
 
 end
 
+def take_turns
+  puts "I'm taking turns"
+end
+
+def print_results
+  puts "I'm giving you results"
+end
+
+def play_game
+  setup
+  take_turns
+  print_results
+end
 
 main_menu
-#   loop do
-#     if valid_placement?(@submarine, player_input)
-#       place(@submarine, player_input)
-#       break
-#     else
-#       puts "Those are invalid coordinates. Please try again:"
-#       player_input = gets.chomp
-#     end
-#   end
-# end
-#
-#
+
 # def turn
 #
 #   displays boards
