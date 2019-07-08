@@ -30,27 +30,29 @@ def setup
   @ships << @cruiser = Ship.new("Cruiser", 3)
   @ships << @submarine = Ship.new("Submarine", 2)
 
-  @computer_board.computer_place(@ships)
-
   puts ""
-  puts "I have laid out my ships on the grid."
-  puts "You now need to lay out your two ships."
-  puts "The Cruiser is three units long and the Submarine is two units long."
+  puts "The computer has laid out #{@ships.count} ships on their board."
+  puts "You now need to place your #{@ships.count} ships."
   puts ""
 
   @player_board.render
 
   @ships.each do |ship|
+    @computer_board.computer_place(ship)
     puts ""
-    puts "Enter the squares for the #{ship.name} (#{ship.length} spaces):"
+    puts "Enter the squares for the #{ship.name}(#{ship.length} spaces):"
     player_input = gets.chomp.upcase.split(" ")
     until @player_board.valid_placement?(ship, player_input)
       puts "Those are invalid coordinates. Please try again:"
       player_input = gets.chomp.upcase.split(" ")
     end
     @player_board.place(ship, player_input)
-    @player_board.render(true)
   end
+
+  puts "========== Computer Board =========="
+  @computer_board.render(true)
+  puts "========== Player Board =========="
+  @player_board.render(true)
 
 end
 

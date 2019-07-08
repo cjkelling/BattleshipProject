@@ -63,7 +63,8 @@ class Board
   end
 
   def render(playing = false)
-    puts(
+    if playing == false
+    puts (
     "  1 2 3 4 \n" +
     "A . . . . \n" +
     "B . . . . \n" +
@@ -71,7 +72,7 @@ class Board
     "D . . . . \n"
     )
 
-    if playing == true
+    elsif playing == true
       puts (
       "  1 2 3 4 \n" +
       "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
