@@ -21,7 +21,6 @@ def main_menu
   end
 end
 
-
 def setup
   @computer_board = Board.new
   @player_board = Board.new
@@ -50,18 +49,27 @@ def setup
   end
 
   puts "========== Computer Board =========="
-  @computer_board.render(true)
+  @computer_board.render
   puts "========== Player Board =========="
   @player_board.render(true)
 
 end
 
 def take_turns
-  puts "I'm taking turns"
+  puts "Enter the coordinate for your shot:"
+  # location = gets.chomp
+  #
+  # puts "Please enter a valid coordinate:"
+  #
+  # puts "You have already fired on this cell. Please choose another cell."
+  #
+  # puts "Your shot on C3 was a miss."
+  # puts "My shot on C1 was a miss."
 end
 
 def print_results
   puts "I'm giving you results"
+  # puts "You won!" || puts "I won!"
 end
 
 def play_game
@@ -71,37 +79,3 @@ def play_game
 end
 
 main_menu
-
-# def turn
-#
-#   displays boards
-#
-# =============COMPUTER BOARD=============
-#   1 2 3 4
-# A M . . M
-# B . . . .
-# C . . . .
-# D . . . .
-# ==============PLAYER BOARD==============
-#   1 2 3 4
-# A S S S .
-# B . M . .
-# C M . S .
-# D . . S .
-#
-#   puts "Enter the coordinate for your shot:"
-#   > D5
-#   puts "Please enter a valid coordinate:"
-#   > A1
-#   puts "You have already fired on this cell. Please choose another cell."
-#   >C3
-#
-#   puts "Your shot on C3 was a miss."
-#   puts "My shot on C1 was a miss."
-#
-# end
-#
-#
-# def results
-#   puts "You won!" || puts "I won!"
-# end
