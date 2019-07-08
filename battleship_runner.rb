@@ -7,15 +7,13 @@ def main_menu
   puts 'Enter P to play. Enter Q to quit.'
   input = gets.chomp.upcase
 
-  loop do
-    if input == "Q"
-      exit
-    elsif input == "P"
-      setup
-    else
-      puts "That is not a valid input. Please enter P to play. Enter Q to quit."
-      input = gets.chomp.upcase
-    end
+  if input == "Q"
+    exit
+  elsif input == "P"
+    setup
+  else
+    puts "That is not a valid input. Please enter P to play. Enter Q to quit."
+    input = gets.chomp.upcase
   end
 end
 
@@ -39,28 +37,21 @@ def setup
 
   puts ""
   puts "Enter the squares for the Cruiser (3 spaces):"
-  player_input = gets.chomp.upcase.split(" ",)
+  player_input = gets.chomp.upcase.split(" ")
 
-  puts player_input
-
-  loop do
-    if @player_board.valid_placement?(@cruiser, player_input)
-      @player_board.place(@cruiser, player_input)
-    else
-      puts "Those are invalid coordinates. Please try again:"
-      player_input = gets.chomp.upcase
-    end
+  until @player_board.valid_placement?(@cruiser, player_input)
+    puts "Those are invalid coordinates. Please try again:"
+    player_input = gets.chomp.upcase.split(" ")
   end
 
+  @player_board.place(@cruiser, player_input)
+
   @player_board.render(true)
+
 end
 
 
 main_menu
-#   puts @player_board.render(true)
-#
-#   player_input = gets.chomp
-#
 #   loop do
 #     if valid_placement?(@submarine, player_input)
 #       place(@submarine, player_input)
