@@ -82,25 +82,14 @@ class Board
     end
   end
 
-  def computer_place
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
+  def computer_place(ship)
 
-    coordinates_cruiser = []
-    coordinates_submarine = []
+    coordinates_ship = []
 
     loop do
-      coordinates_cruiser = @cells.keys.sample(3)
-      if valid_placement?(cruiser, coordinates_cruiser)
-        place(cruiser, coordinates_cruiser)
-        break
-      end
-    end
-
-    loop do
-      coordinates_submarine = @cells.keys.sample(2)
-      if valid_placement?(submarine, coordinates_submarine)
-        place(submarine, coordinates_submarine)
+      coordinates_ship = @cells.keys.sample(ship.length)
+      if valid_placement?(ship, coordinates_ship)
+        place(ship, coordinates_ship)
         break
       end
     end
