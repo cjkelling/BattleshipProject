@@ -44,8 +44,3 @@ class Cell
   end
 
 end
-
-
-def render_name
-  if @render = "M"
-    puts "Miss"
