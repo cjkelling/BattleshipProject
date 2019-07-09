@@ -10,9 +10,9 @@ class Board
     }
   end
 
-  def valid_coordinate?(input)
-    if @cells.keys.include?(input)
-      true
+  def valid_coordinate?(inputs)
+    inputs.all? do |input|
+      @cells.keys.include?(input)
     end
   end
 
@@ -22,7 +22,7 @@ class Board
     end
 
     array_of_empties = coordinates.map do |coord|
-      @cells[coord].empty?
+      @cells[coord].cell_empty?
     end
 
     if array_of_empties.include?(false)

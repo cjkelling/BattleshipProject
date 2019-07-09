@@ -48,26 +48,34 @@ def setup
     @player_board.place(ship, player_input)
   end
 
-  puts ""
-  puts "========== Computer Board =========="
-  @computer_board.render
-  puts ""
-  puts "========== Player Board =========="
-  @player_board.render(true)
-
 end
 
 def take_turns
   puts ""
+  puts "========== Computer Board =========="
+  @computer_board.render
+
+  puts ""
+  puts "========== Player Board =========="
+  @player_board.render(true)
+  
+  puts ""
   puts "Enter the coordinate for your shot:"
-  # location = gets.chomp
-  #
-  # puts "Please enter a valid coordinate:"
-  #
-  # puts "You have already fired on this cell. Please choose another cell."
-  #
-  # puts "Your shot on C3 was a miss."
-  # puts "My shot on C1 was a miss."
+  player_guess = gets.chomp.upcase
+  until @computer_board.valid_coordinate?([player_guess])
+    puts "Please choose a valid coordinate:"
+    player_guess = gets.chomp.upcase
+  end
+  until @computer_board.cells[player_guess].fired_upon? == false
+    puts "You have already fired on this cell. Please choose another cell:"
+    player_guess = gets.chomp.upcase
+  end
+
+  @computer_options = @player_board.cells.keys
+
+  computer_guess = @computer_options.sample(1)
+    @computer_options.delete(computer_guess[0])
+
 end
 
 def print_results
