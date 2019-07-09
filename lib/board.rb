@@ -16,6 +16,10 @@ class Board
     end
   end
 
+  def coordinate_valid?(input)
+    @cells.keys.include?(input)
+  end
+
   def valid_placement?(ship, coordinates)
     unless ship.length == coordinates.count
       return false
@@ -62,7 +66,7 @@ class Board
     end
   end
 
-  def render(playing = false)
+  def board_render(playing = false)
     if playing == false
     puts (
     "  1 2 3 4 \n" +
