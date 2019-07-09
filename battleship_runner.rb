@@ -41,6 +41,7 @@ def setup
     @computer_board.computer_place(ship)
     puts ""
     puts "Enter the coordinates for your #{ship.name}(#{ship.length} spaces):"
+      player_input = gets.chomp.upcase.split(" ")
     until @player_board.valid_coordinate?(player_input) && @player_board.valid_placement?(ship, player_input)
       puts "Those are invalid coordinates. Please try again:"
       player_input = gets.chomp.upcase.split(" ")
@@ -56,8 +57,8 @@ def take_turns
   puts "=============PLAYER BOARD============="
   @player_board.board_render(true)
   puts ""
-  
-  
+
+
   puts "Enter the coordinate for your shot:"
   player_guess = gets.chomp.upcase
   until @computer_board.valid_coordinate?([player_guess])

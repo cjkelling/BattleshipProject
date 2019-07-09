@@ -34,6 +34,8 @@ class Cell
       @render = "."
     elsif fired_upon? && cell_empty?
       @render = "M"
+    elsif !fired_upon? && !cell_empty?
+      @render = "."
     elsif fired_upon? && !cell_empty? && @ship.health == 0
       @render = "X"
     elsif fired_upon? && !cell_empty?
