@@ -1,6 +1,7 @@
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
+require './lib/turn'
 
 def main_menu
   puts 'Welcome to BATTLESHIP'
@@ -50,30 +51,63 @@ def setup
 end
 
 def take_turns
-  puts "=============COMPUTER BOARD============="
-  @computer_board.board_render
-  puts ""
-  puts "=============PLAYER BOARD============="
-  @player_board.board_render(true)
-  puts ""
+  turn = Turn.new
+  loop do
+    puts "=============COMPUTER BOARD============="
+    @computer_board.board_render
+    puts ""
+    puts "=============PLAYER BOARD============="
+    @player_board.board_render(true)
+    puts ""
 
-  puts "Enter the coordinate for your shot:"
-  player_guess = gets.chomp.upcase
-  until @computer_board.valid_coordinate?([player_guess])
-    puts "Please choose a valid coordinate:"
+
+    puts "Enter the coordinate for your shot:"
     player_guess = gets.chomp.upcase
-  end
-  until @computer_board.cells[player_guess].fired_upon? == false
-    puts "You have already fired on this cell. Please choose another cell:"
-    player_guess = gets.chomp.upcase
-  end
+    until @computer_board.valid_coordinate?([player_guess])
+      puts "Please choose a valid coordinate:"
+      player_guess = gets.chomp.upcase
+    end
+    until @computer_board.cells[player_guess].fired_upon? == false
+      puts "You have already fired on this cell. Please choose another cell:"
+      player_guess = gets.chomp.upcase
+    end
 
-  @computer_options = @player_board.cells.keys
+    @computer_board.cells[player_guess].fire_upon
+    @computer_board.cells[player_guess].render(true)
 
-  computer_guess = @computer_options.sample(1)
-    @computer_options.delete(computer_guess[0])
 
+    @computer_options = @player_board.cells.keys
+
+    computer_guess = @computer_options.sample(1)
+      @computer_options.delete(computer_guess[0])
+
+    @player_board.cells[computer_guess[0]].fire_upon
+    @player_board.cells[computer_guess[0]].render
+
+    if @player_board.cells[computer_guess[0]].render == "M"
+      puts "My shot on #{computer_guess[0]} was a miss."
+    elsif @player_board.cells[computer_guess[0]].render == "H"
+      puts "My shot on #{computer_guess[0]} was a hit."
+    elsif @player_board.cells[computer_guess[0]].render == "X"
+      puts "My shot on #{computer_guess[0]} was a miss."
+    end
+
+    if @computer_board.cells[player_guess].render == "M"
+      puts "Your shot on #{player_guess} was a miss."
+    elsif @player_board.cells[player_guess].render == "H"
+      puts "Your shot on #{player_guess} was a hit."
+    elsif @player_board.cells[player_guess].render == "X"
+      puts "Your shot on #{player_guess} was a miss."
+    end
+
+      # puts "Your shot on #{player_guess} #{render_name}."
+      # puts "My shot on #{computer_guess[0]} #{render_name}."
+      puts ""
+      puts ""
+    end
 end
+
+
 
 def print_results
   puts ""

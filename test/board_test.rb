@@ -27,11 +27,11 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_coordinate
-    assert @board.valid_coordinate?('A1')
-    assert @board.valid_coordinate?('D4')
-    refute @board.valid_coordinate?('A5')
-    refute @board.valid_coordinate?('E1')
-    refute @board.valid_coordinate?('A22')
+    assert @board.coordinate_valid?('A1')
+    assert @board.coordinate_valid?('D4')
+    refute @board.coordinate_valid?('A5')
+    refute @board.coordinate_valid?('E1')
+    refute @board.coordinate_valid?('A22')
   end
 
   def test_valid_length
@@ -69,18 +69,18 @@ class BoardTest < Minitest::Test
     assert @board.valid_placement?(@submarine, ["B1", "C1"])
   end
 
-  # def test_render
-  #   @board.place(@cruiser, ["A1", "A2", "A3"])
-  #   @board.board_render
-  #   @board.board_render
-  #   @board.cells["A1"].fire_upon
-  #   @board.board_render
-  #   @board.cells["A2"].fire_upon
-  #   @board.cells["A3"].fire_upon
-  #   @board.board_render
-  #   @board.cells["D3"].fire_upon
-  #   @board.board_render
-  # end
+  def test_render
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.board_render
+    @board.board_render
+    @board.cells["A1"].fire_upon
+    @board.board_render
+    @board.cells["A2"].fire_upon
+    @board.cells["A3"].fire_upon
+    @board.board_render
+    @board.cells["D3"].fire_upon
+    @board.board_render
+  end
 
   def test_place_computer_ship
     @computer_board.computer_place(@cruiser)
