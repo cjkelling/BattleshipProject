@@ -29,14 +29,16 @@ class Cell
   def render(show_ship = false)
     if !fired_upon? && empty?
       @render = "."
+    elsif show_ship == true && !empty?
+      @render ="S"
+    elsif !fired_upon? && !empty?
+      @render = "."
     elsif fired_upon? && empty?
       @render = "M"
     elsif fired_upon? && !empty? && @ship.health == 0
       @render = "X"
     elsif fired_upon? && !empty?
       @render = "H"
-    elsif show_ship == true && !empty?
-      @render ="S"
     end
   end
 

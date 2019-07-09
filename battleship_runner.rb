@@ -31,7 +31,7 @@ def setup
 
   puts ""
   puts "The computer has laid out #{@ships.count} ships on their board."
-  puts "You now need to place your #{@ships.count} ships."
+  puts "You now need to place your #{@ships.count} ships on your board."
   puts ""
 
   @player_board.render
@@ -39,7 +39,7 @@ def setup
   @ships.each do |ship|
     @computer_board.computer_place(ship)
     puts ""
-    puts "Enter the squares for the #{ship.name}(#{ship.length} spaces):"
+    puts "Enter the coordinates for your #{ship.name}(#{ship.length} spaces):"
     player_input = gets.chomp.upcase.split(" ")
     until @player_board.valid_placement?(ship, player_input)
       puts "Those are invalid coordinates. Please try again:"
@@ -48,14 +48,17 @@ def setup
     @player_board.place(ship, player_input)
   end
 
+  puts ""
   puts "========== Computer Board =========="
   @computer_board.render
+  puts ""
   puts "========== Player Board =========="
   @player_board.render(true)
 
 end
 
 def take_turns
+  puts ""
   puts "Enter the coordinate for your shot:"
   # location = gets.chomp
   #
@@ -68,6 +71,7 @@ def take_turns
 end
 
 def print_results
+  puts ""
   puts "I'm giving you results"
   # puts "You won!" || puts "I won!"
 end
