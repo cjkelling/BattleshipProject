@@ -10,6 +10,7 @@ class TurnTest < Minitest::Test
   def setup
     @computer_board = Board.new
     @player_board = Board.new
+    @turn = Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
 
     @ships_computer = []
     @ships_player = []
@@ -20,12 +21,15 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of Board, @computer_board
-    assert_instance_of Board, @player_board
+    assert_instance_of @turn, Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
   end
 
   def test_display_boards
-    assert_equal
+    assert_equal ("  1 2 3 4 \n" +
+"A . . . . \n" +
+"B . . . . \n" +
+"C . . . . \n" +
+"D . . . . \n"), @computer_board.board_render
   end
 
 end
