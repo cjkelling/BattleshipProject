@@ -62,7 +62,7 @@ class Board
     end
   end
 
-  def render(playing = false)
+  def board_render(playing = false)
     if playing == false
     puts (
     "  1 2 3 4 \n" +
