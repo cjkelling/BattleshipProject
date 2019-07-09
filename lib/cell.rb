@@ -24,13 +24,12 @@ class Cell
       @ship.hit
     end
     @fired_upon = true
+
   end
 
   def render(show_ship = false)
     if !fired_upon? && cell_empty?
       @render = "."
-    elsif show_ship == true && !cell_empty?
-      @render ="S"
     elsif !fired_upon? && !cell_empty?
       @render = "."
     elsif fired_upon? && cell_empty?
@@ -39,6 +38,8 @@ class Cell
       @render = "X"
     elsif fired_upon? && !cell_empty?
       @render = "H"
+    elsif show_ship == true && !cell_empty?
+      @render ="S"
     end
   end
 
