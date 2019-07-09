@@ -10,9 +10,9 @@ class Board
     }
   end
 
-  def valid_coordinate?(input)
-    if @cells.keys.include?(input)
-      true
+  def valid_coordinate?(inputs)
+    inputs.all? do |input|
+      @cells.keys.include?(input)
     end
   end
 
@@ -22,7 +22,7 @@ class Board
     end
 
     array_of_empties = coordinates.map do |coord|
-      @cells[coord].empty?
+      @cells[coord].cell_empty?
     end
 
     if array_of_empties.include?(false)
@@ -62,16 +62,16 @@ class Board
     end
   end
 
-  def render(playing = false)
-    puts(
-    "  1 2 3 4 \n" +
-    "A . . . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . \n"
-    )
-
-    if playing == true
+  def board_render(playing = false)
+    if playing == false
+      puts (
+        "  1 2 3 4 \n"
+        "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n"
+        "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n"
+        "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n"
+        "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
+      )
+    elsif playing == true
       puts (
       "  1 2 3 4 \n" +
       "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
@@ -79,32 +79,19 @@ class Board
       "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
       "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
       )
-    end
+    end 
   end
 
-  def computer_place
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-
-    coordinates_cruiser = []
-    coordinates_submarine = []
+  def computer_place(ship)
+    coordinates_ship = []
 
     loop do
-      coordinates_cruiser = @cells.keys.sample(3)
-      if valid_placement?(cruiser, coordinates_cruiser)
-        place(cruiser, coordinates_cruiser)
+      coordinates_ship = @cells.keys.sample(ship.length)
+      if valid_placement?(ship, coordinates_ship)
+        place(ship, coordinates_ship)
         break
       end
     end
-
-    loop do
-      coordinates_submarine = @cells.keys.sample(2)
-      if valid_placement?(submarine, coordinates_submarine)
-        place(submarine, coordinates_submarine)
-        break
-      end
-    end
-
   end
 
 end

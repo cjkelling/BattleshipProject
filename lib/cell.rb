@@ -7,7 +7,7 @@ class Cell
     @fired_upon = false
   end
 
-  def empty?
+  def cell_empty?
     @ship.nil?
   end
 
@@ -20,22 +20,23 @@ class Cell
   end
 
   def fire_upon
-    if !fired_upon? && !empty?
+    if !fired_upon? && !cell_empty?
       @ship.hit
     end
     @fired_upon = true
+
   end
 
   def render(show_ship = false)
-    if !fired_upon? && empty?
+    if !fired_upon? && cell_empty?
       @render = "."
-    elsif fired_upon? && empty?
+    elsif fired_upon? && cell_empty?
       @render = "M"
-    elsif fired_upon? && !empty? && @ship.health == 0
+    elsif fired_upon? && !cell_empty? && @ship.health == 0
       @render = "X"
-    elsif fired_upon? && !empty?
+    elsif fired_upon? && !cell_empty?
       @render = "H"
-    elsif show_ship == true && !empty?
+    elsif show_ship == true && !cell_empty?
       @render ="S"
     end
   end

@@ -19,17 +19,17 @@ class CellTest < Minitest::Test
   def test_empty_cell_attributes
     assert_equal "B4", @cell.coordinate
     assert_nil @cell.ship
-    assert @cell.empty?
+    assert @cell.cell_empty?
     refute @cell.fired_upon?
   end
 
   def test_place_ship
     @cell.place_ship(@ship)
-    refute @cell.empty?
+    refute @cell.cell_empty?
     assert_instance_of Ship, @cell.ship
 
     @cell_2.place_ship(@ship)
-    refute @cell_2.empty?
+    refute @cell_2.cell_empty?
     assert_instance_of Ship, @cell_2.ship
   end
 

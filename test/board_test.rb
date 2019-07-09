@@ -12,8 +12,9 @@ class BoardTest < Minitest::Test
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
     @computer_board = Board.new
+    @player_board = Board.new
   end
-  
+
   def test_it_exists
     assert_instance_of Board, @board
     assert_instance_of Hash, @board.cells
@@ -68,22 +69,24 @@ class BoardTest < Minitest::Test
     assert @board.valid_placement?(@submarine, ["B1", "C1"])
   end
 
-  def test_render
-    @board.place(@cruiser, ["A1", "A2", "A3"])
-    @board.render
-    @board.render(true)
-    @board.cells["A1"].fire_upon
-    @board.render(true)
-    @board.cells["A2"].fire_upon
-    @board.cells["A3"].fire_upon
-    @board.render(true)
-    @board.cells["D3"].fire_upon
-    @board.render(true)
-  end
+  # def test_render
+  #   @board.place(@cruiser, ["A1", "A2", "A3"])
+  #   @board.board_render
+  #   @board.board_render
+  #   @board.cells["A1"].fire_upon
+  #   @board.board_render
+  #   @board.cells["A2"].fire_upon
+  #   @board.cells["A3"].fire_upon
+  #   @board.board_render
+  #   @board.cells["D3"].fire_upon
+  #   @board.board_render
+  # end
 
-  def test_place_ship
-    @computer_board.computer_place
-    @computer_board.render(true)
+  def test_place_computer_ship
+    @computer_board.computer_place(@cruiser)
+    @computer_board.computer_place(@submarine)
+
+    @computer_board.board_render
   end
 
 end
