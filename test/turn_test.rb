@@ -24,12 +24,8 @@ class TurnTest < Minitest::Test
     assert_instance_of @turn, Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
   end
 
-  def test_display_boards
-    assert_equal ("  1 2 3 4 \n" +
-"A . . . . \n" +
-"B . . . . \n" +
-"C . . . . \n" +
-"D . . . . \n"), @computer_board.board_render
+  def test_coordinate_valid
+    assert_equal false, "D5"
   end
 
 end
