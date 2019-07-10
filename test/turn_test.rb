@@ -8,15 +8,30 @@ require 'pry'
 
 class TurnTest < Minitest::Test
   def setup
-    @board = Board.new
-    @cruiser = Ship.new("Cruiser", 3)
-    @submarine = Ship.new("Submarine", 2)
     @computer_board = Board.new
     @player_board = Board.new
+    @turn = Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
+
+    @ships_computer = []
+    @ships_player = []
+    @ships_computer << @cruiser = Ship.new("Cruiser", 3)
+    @ships_computer << @submarine = Ship.new("Submarine", 2)
+    @ships_player << @cruiser = Ship.new("Cruiser", 3)
+    @ships_player << @submarine = Ship.new("Submarine", 2)
   end
 
-  def test_display_boards
-
+  def test_it_exists
+    assert_instance_of Turn, @turn
   end
+
+  def test_shot_is_valid
+    assert_equal false, @computer_board.valid_coordinate?(["D5"])
+    assert_equal true, @computer_board.valid_coordinate?(["A3"])
+    @computer_board.cells["A3"].fire_upon
+    assert_equal true, @computer_board.cells["A3"].fired_upon?
+    assert_equal false, @computer_board.cells["C3"].fired_upon?
+  end
+
+
 
 end

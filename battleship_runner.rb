@@ -93,7 +93,7 @@ def print_results(results)
   @player_board.board_render(true)
   puts ""
   if results == "player"
-    puts "You sunk the computer's last ship. Player won!"
+    puts "You sunk the computer's last ship. You win!"
   elsif results == "computer"
     puts "The computer sunk your last ship. Computer wins!"
   end
