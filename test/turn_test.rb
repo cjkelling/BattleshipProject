@@ -24,9 +24,14 @@ class TurnTest < Minitest::Test
     assert_instance_of Turn, @turn
   end
 
-  def test_shot_coordinate_valid
+  def test_shot_is_valid
     assert_equal false, @computer_board.valid_coordinate?(["D5"])
     assert_equal true, @computer_board.valid_coordinate?(["A3"])
+    @computer_board.cells["A3"].fire_upon
+    assert_equal true, @computer_board.cells["A3"].fired_upon?
+    assert_equal false, @computer_board.cells["C3"].fired_upon?
   end
+
+
 
 end
