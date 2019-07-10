@@ -9,12 +9,6 @@ loop do
   puts 'Enter P to play. Enter Q to quit.'
   input = gets.chomp.upcase
 
-  # elsif input == "P"
-  #   puts 'Enter P to play. Enter Q to quit.'
-  #   input = gets.chomp.upcase
-  # else
-  #   puts "That is not a valid input. Please enter P to play. Enter Q to quit."
-  #   input = gets.chomp.upcase
   until input == "P" || input == "Q"
     puts "That is not a valid input. Please enter P to play. Enter Q to quit."
     input = gets.chomp.upcase
@@ -77,10 +71,8 @@ loop do
     @player_board.place(ship, player_input)
   end
 
-  # binding.pry
+
   turn = Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
   turn.take_turns
   turn.final_results
 end
-
-# turn.final_results

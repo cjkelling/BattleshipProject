@@ -84,23 +84,3 @@ class Turn
   end
 
 end
-#
-#       if @player_board.cells[@computer_guess].render == "M"
-#         puts "The computer's shot on #{@computer_guess} was a miss."
-#       elsif @player_board.cells[@computer_guess].render == "H"
-#         puts "The computer's shot on #{@computer_guess} was a hit."
-#       elsif @player_board.cells[@computer_guess].render == "X"
-#         puts "The computer's shot on #{@computer_guess} was a hit and sunk your ship."
-#       end
-#
-#       if @computer_board.cells[player_guess].render == "M"
-#         puts "Your shot on #{player_guess} was a miss."
-#       elsif @computer_board.cells[player_guess].render == "H"
-#         puts "Your shot on #{player_guess} was a hit."
-#       elsif @computer_board.cells[player_guess].render == "X"
-#         puts "Your shot on #{player_guess} was a hit and sunk the computer's ship."
-#       puts ""
-#       puts ""
-#     end
-#   end
-# end
