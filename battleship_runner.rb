@@ -22,6 +22,38 @@ def main_menu
   end
 end
 
+def add_ships
+  @computer_board = Board.new
+  @player_board = Board.new
+
+  @ships_computer = []
+  @ships_player = []
+  @ships_computer << @cruiser = Ship.new("Cruiser", 3)
+  @ships_computer << @submarine = Ship.new("Submarine", 2)
+  @ships_player << @cruiser = Ship.new("Cruiser", 3)
+  @ships_player << @submarine = Ship.new("Submarine", 2)
+
+  loop do
+    puts "Would you like to make a ship? Press Y for yes, and N for no."
+    input = gets.chomp.upcase
+    if input == "N"
+      play_game
+    elsif input == "Y"
+      puts "Give your ship a name:"
+      name = gets.chomp.capitalize
+      puts "Give your ship a length up to 4:"
+      length = gets.chomp.to_i
+      until  length <= 4
+        puts "That's too long. Shorten your damn ship!"
+        length = gets.chomp.to_i
+      end
+      @ship = Ship.new(name, length)
+      @ships_player << @ship = Ship.new(@ship.name, @ship.length)
+      @ships_computer << @ship = Ship.new(@ship.name, @ship.length)
+    end
+  end
+end
+
 def board_setup
   puts ""
   puts "The computer has laid out #{@ships_computer.count} ships on its board."
@@ -44,51 +76,27 @@ def board_setup
   end
 end
 
-def print_results(results)
-  if results == "player"
-    puts "You sunk the computer's last ship. Player won!"
-  elsif results == "computer"
-    puts "The computer sunk your last ship. Computer wins!"
-  end
-end
-
-def add_ships
-  @computer_board = Board.new
-  @player_board = Board.new
-
-  @ships_computer = []
-  @ships_player = []
-  @ships_computer << @cruiser = Ship.new("Cruiser", 3)
-  @ships_computer << @submarine = Ship.new("Submarine", 2)
-  @ships_player << @cruiser = Ship.new("Cruiser", 3)
-  @ships_player << @submarine = Ship.new("Submarine", 2)
-
-  loop do
-    puts "Would you like to make your a ship? Press Y for yes, and N for no."
-    input = gets.chomp.upcase
-    if input == "N"
-      play_game
-    elsif input == "Y"
-      puts "Give your ship a name:"
-      name = gets.chomp.capitalize
-      puts "Give your ship a length up to 4:"
-      length = gets.chomp.to_i
-      until  length <= 4
-        puts "That's too long. Shorten your damn ship!"
-        length = gets.chomp.to_i
-      end
-      @ship = Ship.new(name, length)
-      @ships_player << @ship = Ship.new(@ship.name, @ship.length)
-      @ships_computer << @ship = Ship.new(@ship.name, @ship.length)
-    end
-  end
-end
-
 def play_game
   board_setup
   turn = Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
   winner = turn.take_turns
   print_results(winner)
+  main_menu
+end
+
+def print_results(results)
+  puts ""
+  puts "=============COMPUTER BOARD============="
+  @computer_board.board_render(true)
+  puts ""
+  puts "=============PLAYER BOARD============="
+  @player_board.board_render(true)
+  puts ""
+  if results == "player"
+    puts "You sunk the computer's last ship. Player won!"
+  elsif results == "computer"
+    puts "The computer sunk your last ship. Computer wins!"
+  end
 end
 
 main_menu

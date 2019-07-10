@@ -5,6 +5,8 @@ class Turn
     @player_board = player_board
     @ships_computer = ships_computer
     @ships_player = ships_player
+
+    @computer_options = @player_board.cells.keys
   end
 
   def take_turns
@@ -38,23 +40,22 @@ class Turn
         return "player"
       end
 
-      computer_options = @player_board.cells.keys
-      computer_guess = computer_options.sample(1)
-      computer_options.delete(computer_guess[0])
+      @computer_guess = @computer_options.sample
+      @computer_options.delete(@computer_guess)
 
-      @player_board.cells[computer_guess[0]].fire_upon
-      @player_board.cells[computer_guess[0]].render
+      @player_board.cells[@computer_guess].fire_upon
+      @player_board.cells[@computer_guess].render
 
       if @ships_player.find_all {|ship| ship.health > 0}.length == 0
         return "computer"
       end
 
-      if @player_board.cells[computer_guess[0]].render == "M"
-        puts "The computer's shot on #{computer_guess[0]} was a miss."
-      elsif @player_board.cells[computer_guess[0]].render == "H"
-        puts "The computer's shot on #{computer_guess[0]} was a hit."
-      elsif @player_board.cells[computer_guess[0]].render == "X"
-        puts "The computer's shot on #{computer_guess[0]} was a hit and sunk your ship."
+      if @player_board.cells[@computer_guess].render == "M"
+        puts "The computer's shot on #{@computer_guess} was a miss."
+      elsif @player_board.cells[@computer_guess].render == "H"
+        puts "The computer's shot on #{@computer_guess} was a hit."
+      elsif @player_board.cells[@computer_guess].render == "X"
+        puts "The computer's shot on #{@computer_guess} was a hit and sunk your ship."
       end
 
       if @computer_board.cells[player_guess].render == "M"
