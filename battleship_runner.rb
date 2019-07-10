@@ -23,18 +23,6 @@ def main_menu
 end
 
 def board_setup
-  @computer_board = Board.new
-  @player_board = Board.new
-
-  @ships_computer = []
-  @ships_player = []
-  @ships_computer << @cruiser = Ship.new("Cruiser", 3)
-  @ships_computer << @submarine = Ship.new("Submarine", 2)
-  @ships_computer << @ship = Ship.new(@ship.name, @ship.length)
-  @ships_player << @cruiser = Ship.new("Cruiser", 3)
-  @ships_player << @submarine = Ship.new("Submarine", 2)
-  @ships_player << @ship = Ship.new(@ship.name, @ship.length)
-
   puts ""
   puts "The computer has laid out #{@ships_computer.count} ships on its board."
   puts "You now need to place your #{@ships_player.count} ships on your board."
@@ -65,22 +53,35 @@ def print_results(results)
 end
 
 def add_ships
-  puts "Would you like to make your own ship? Press Y for yes, and N for no."
-  input = gets.chomp.upcase
-  if input == "N"
-    play_game
-  elsif input == "Y"
-    puts "Give your ship a name:"
-    name = gets.chomp.capitalize
-    puts "Give your ship a length up to 4:"
-    length = gets.chomp.to_i
-    until length <= 4
-      puts "That's too long. Shorten your damn ship!"
+  @computer_board = Board.new
+  @player_board = Board.new
+
+  @ships_computer = []
+  @ships_player = []
+  @ships_computer << @cruiser = Ship.new("Cruiser", 3)
+  @ships_computer << @submarine = Ship.new("Submarine", 2)
+  @ships_player << @cruiser = Ship.new("Cruiser", 3)
+  @ships_player << @submarine = Ship.new("Submarine", 2)
+
+  loop do
+    puts "Would you like to make your a ship? Press Y for yes, and N for no."
+    input = gets.chomp.upcase
+    if input == "N"
+      play_game
+    elsif input == "Y"
+      puts "Give your ship a name:"
+      name = gets.chomp.capitalize
+      puts "Give your ship a length up to 4:"
       length = gets.chomp.to_i
+      until  length <= 4
+        puts "That's too long. Shorten your damn ship!"
+        length = gets.chomp.to_i
+      end
+      @ship = Ship.new(name, length)
+      @ships_player << @ship = Ship.new(@ship.name, @ship.length)
+      @ships_computer << @ship = Ship.new(@ship.name, @ship.length)
     end
-    @ship = Ship.new(name, length)
   end
-  play_game
 end
 
 def play_game
