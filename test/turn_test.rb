@@ -21,11 +21,12 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of @turn, Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
+    assert_instance_of Turn, @turn
   end
 
-  def test_coordinate_valid
-    assert_equal false, "D5"
+  def test_shot_coordinate_valid
+    assert_equal false, @computer_board.valid_coordinate?(["D5"])
+    assert_equal true, @computer_board.valid_coordinate?(["A3"])
   end
 
 end
