@@ -2,27 +2,22 @@ require './lib/board'
 require './lib/cell'
 require './lib/ship'
 require './lib/turn'
+require 'pry'
 
-def main_menu
+loop do
   puts 'Welcome to BATTLESHIP'
   puts 'Enter P to play. Enter Q to quit.'
   input = gets.chomp.upcase
 
-  loop do
+  until input == "P" || input == "Q"
+    puts "That is not a valid input. Please enter P to play. Enter Q to quit."
+    input = gets.chomp.upcase
+  end
     if input == "Q"
       exit
-    elsif input == "P"
-      add_ships
-      puts 'Enter P to play. Enter Q to quit.'
-      input = gets.chomp.upcase
-    else
-      puts "That is not a valid input. Please enter P to play. Enter Q to quit."
-      input = gets.chomp.upcase
     end
-  end
-end
 
-def add_ships
+
   @computer_board = Board.new
   @player_board = Board.new
 
@@ -33,28 +28,29 @@ def add_ships
   @ships_player << @cruiser = Ship.new("Cruiser", 3)
   @ships_player << @submarine = Ship.new("Submarine", 2)
 
-  loop do
     puts "Would you like to make a ship? Press Y for yes, and N for no."
     input = gets.chomp.upcase
     if input == "N"
-      play_game
+      puts "Sweet, you have a Cruiser and a Submarine!"
     elsif input == "Y"
-      puts "Give your ship a name:"
-      name = gets.chomp.capitalize
-      puts "Give your ship a length up to 4:"
-      length = gets.chomp.to_i
-      until  length <= 4
-        puts "That's too long. Shorten your damn ship!"
-        length = gets.chomp.to_i
+      puts "How many (up to 3)?"
+      answer = gets.chomp.to_i
+      answer.times do
+        puts "Give your ship a name:"
+        name = gets.chomp.capitalize
+          puts "Give your ship a length up to 4:"
+          length = gets.chomp.to_i
+          until length.between?(1,4)
+            puts "numbers only!"
+            puts "Give your ship a length up to 4:"
+            length = gets.chomp.to_i
+          end
+        @ship = Ship.new(name, length)
+        @ships_player << @ship = Ship.new(@ship.name, @ship.length)
+        @ships_computer << @ship = Ship.new(@ship.name, @ship.length)
       end
-      @ship = Ship.new(name, length)
-      @ships_player << @ship = Ship.new(@ship.name, @ship.length)
-      @ships_computer << @ship = Ship.new(@ship.name, @ship.length)
     end
-  end
-end
 
-def board_setup
   puts ""
   puts "The computer has laid out #{@ships_computer.count} ships on its board."
   puts "You now need to place your #{@ships_player.count} ships on your board."
@@ -66,7 +62,7 @@ def board_setup
 
   @ships_player.each do |ship|
     puts ""
-    puts "Enter the coordinates for your #{ship.name}(#{ship.length} spaces):"
+    puts "Enter the coordinates for your #{ship.name} (#{ship.length} spaces):"
     player_input = gets.chomp.upcase.split(" ")
     until @player_board.valid_coordinate?(player_input) && @player_board.valid_placement?(ship, player_input)
       puts "Those are invalid coordinates. Please try again:"
@@ -74,29 +70,9 @@ def board_setup
     end
     @player_board.place(ship, player_input)
   end
-end
 
-def play_game
-  board_setup
+
   turn = Turn.new(@computer_board, @player_board, @ships_computer, @ships_player)
-  winner = turn.take_turns
-  print_results(winner)
-  main_menu
+  turn.take_turns
+  turn.final_results
 end
-
-def print_results(results)
-  puts ""
-  puts "=============COMPUTER BOARD============="
-  @computer_board.board_render(true)
-  puts ""
-  puts "=============PLAYER BOARD============="
-  @player_board.board_render(true)
-  puts ""
-  if results == "player"
-    puts "You sunk the computer's last ship. You win!"
-  elsif results == "computer"
-    puts "The computer sunk your last ship. Computer wins!"
-  end
-end
-
-main_menu

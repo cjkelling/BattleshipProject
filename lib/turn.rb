@@ -9,8 +9,12 @@ class Turn
     @computer_options = @player_board.cells.keys
   end
 
+  def all_ships_sunk?
+    @ships_computer.all? {|ship| ship.sunk?} || @ships_player.all? {|ship| ship.sunk?}
+  end
+
   def take_turns
-    loop do
+    until all_ships_sunk?
       puts ""
       puts "=============COMPUTER BOARD============="
       @computer_board.board_render
@@ -36,19 +40,12 @@ class Turn
       @computer_board.cells[player_guess].fire_upon
       @computer_board.cells[player_guess].render(true)
 
-      if @ships_computer.find_all {|ship| ship.health > 0}.length == 0
-        return "player"
-      end
 
       @computer_guess = @computer_options.sample
       @computer_options.delete(@computer_guess)
 
       @player_board.cells[@computer_guess].fire_upon
       @player_board.cells[@computer_guess].render
-
-      if @ships_player.find_all {|ship| ship.health > 0}.length == 0
-        return "computer"
-      end
 
       if @player_board.cells[@computer_guess].render == "M"
         puts "The computer's shot on #{@computer_guess} was a miss."
@@ -64,9 +61,26 @@ class Turn
         puts "Your shot on #{player_guess} was a hit."
       elsif @computer_board.cells[player_guess].render == "X"
         puts "Your shot on #{player_guess} was a hit and sunk the computer's ship."
-      end
       puts ""
       puts ""
     end
+    end
   end
+
+
+  def final_results
+    puts ""
+    puts "=============COMPUTER BOARD============="
+    @computer_board.board_render(true)
+    puts ""
+    puts "=============PLAYER BOARD============="
+    @player_board.board_render(true)
+    puts ""
+    if @ships_computer.find_all {|ship| ship.health > 0}.length == 0
+      puts "You sunk all the computers ships. You win!"
+    elsif @ships_player.find_all {|ship| ship.health > 0}.length == 0
+      puts "The computer sunk all your ships. It won!"
+    end
+  end
+
 end
